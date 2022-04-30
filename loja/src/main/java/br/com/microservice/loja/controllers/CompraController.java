@@ -1,7 +1,5 @@
 package br.com.microservice.loja.controllers;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +17,7 @@ public class CompraController {
 	private CompraService compraService;
 	
 	@PostMapping
-	public void efetuaCompra(@RequestBody @Valid CompraDTO compraDTO) {
+	public void efetuaCompra(@RequestBody CompraDTO compraDTO) {
 		compraService.realizaCompra(compraDTO);
 	}	
 }
