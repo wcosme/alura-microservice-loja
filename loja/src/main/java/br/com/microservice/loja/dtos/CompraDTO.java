@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class CompraDTO {
 	
-	private List<ItemDTO> itens;
-	
+	private Long id;	
+	private List<ItemDTO> itens;	
 	private EnderecoDTO endereco;
 
 }
