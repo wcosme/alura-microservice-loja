@@ -2,12 +2,17 @@ server:
   port: 8888
   
 spring:
+  application:
+    name: config-server  
+
   profiles:
     active:
     - native
+
   cloud:
     config:
       server:
-        native:
-          search-locations:
-          - C:/Desenv/workspaces/alura-microservice-repo/fornecedor
+        git:
+          uri: https://github.com/wcosme/alura-microservice-repo
+          search-paths:
+          - fornecedor

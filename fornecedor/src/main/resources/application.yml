@@ -5,11 +5,9 @@ spring:
   application:
     name: fornecedor-service
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-  
+  config:
+    import: configserver:http://localhost:8888
+
 eureka:
   client:
     fetch-registry: true
