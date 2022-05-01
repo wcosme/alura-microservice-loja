@@ -3,7 +3,7 @@ server:
   
 spring:
   application:
-    name: fornecedor-service
+    name: fornecedor
 
   config:
     import: configserver:http://localhost:8888
