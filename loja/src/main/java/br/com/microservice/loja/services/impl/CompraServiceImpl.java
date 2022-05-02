@@ -4,6 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import br.com.microservice.loja.clilent.FornecedorClient;
 import br.com.microservice.loja.dtos.CompraDTO;
 import br.com.microservice.loja.dtos.InfoFornecedorDTO;
@@ -17,6 +19,7 @@ public class CompraServiceImpl implements CompraService {
 	@Autowired
 	private FornecedorClient client;
 
+	@HystrixCommand(fallbackMethod = "realizaCompraFallback")
 	@Override
 	public Compra realizaCompra(CompraDTO compraDTO) {
 		
@@ -31,5 +34,14 @@ public class CompraServiceImpl implements CompraService {
 		BeanUtils.copyProperties(pedido, compraRealizada);
 					
 		return compraRealizada;
+	}
+	
+	public Compra realizaCompraFallback(CompraDTO compraDTO) {
+		
+		var compraFallback = new Compra();
+		compraFallback.setEnderecoDestino(compraDTO.getEndereco().toString());
+		
+		return compraFallback;
+		
 	}
 }
